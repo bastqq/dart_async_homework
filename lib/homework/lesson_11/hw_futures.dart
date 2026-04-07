@@ -30,4 +30,18 @@ void main() async {
 
   print("Мені $ageString $ageEnding");
   print('________________end_task_2_______________');
+
+  final stopwatch = Stopwatch();
+
+  stopwatch.start();
+  await fetchName();
+  stopwatch.stop();
+  var timer = stopwatch.elapsedMilliseconds;
+  stopwatch.reset();
+  stopwatch.start();
+  await fetchAge(36);
+  stopwatch.stop();
+  timer = timer + stopwatch.elapsedMilliseconds;
+  print('Час виконання двох методів: $timer мілісекунд');
+  print('________________end_task_3_______________');
 }
