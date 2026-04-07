@@ -53,4 +53,15 @@ void main() async {
   timer = stopwatch.elapsedMilliseconds;
   print('Час виконання двох методів паралельно: $timer мілісекунд');
   print('________________end_task_4_______________');
+
+  Future<String> delayedCountdown(int seconds) async {
+    while (seconds > 0) {
+      print('$seconds... ');
+      await Future.delayed(Duration(seconds: 1));
+      seconds = seconds - 1;
+    }
+    return 'Старт!';
+  }
+
+  print(await delayedCountdown(5));
 }
