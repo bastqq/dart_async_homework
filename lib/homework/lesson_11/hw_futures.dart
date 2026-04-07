@@ -44,4 +44,13 @@ void main() async {
   timer = timer + stopwatch.elapsedMilliseconds;
   print('Час виконання двох методів: $timer мілісекунд');
   print('________________end_task_3_______________');
+
+  stopwatch.reset();
+  stopwatch.start();
+  var paralell = await Future.wait([fetchAge(25), fetchName()]);
+  stopwatch.stop();
+  print(paralell);
+  timer = stopwatch.elapsedMilliseconds;
+  print('Час виконання двох методів паралельно: $timer мілісекунд');
+  print('________________end_task_4_______________');
 }
