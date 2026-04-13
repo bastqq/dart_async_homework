@@ -10,4 +10,13 @@ void main() async {
   var sub = myStream.listen((data) {
     print(data);
   });
+  sub.cancel();
+
+  Stream<int> streamInt = Stream.periodic(Duration(seconds: 1), (index) {
+    return index;
+  }).take(10);
+
+  await for (var value in streamInt) {
+    print('$value...');
+  }
 }
