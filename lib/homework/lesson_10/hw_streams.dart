@@ -5,20 +5,18 @@ void main() async {
 
   final myStream = Stream.fromIterable(numbers);
 
-  await for (var data in myStream) {
+  await for (final data in myStream) {
     print(data);
   }
 
-  var sub = myStream.listen((data) {
-    print(data);
-  });
+  final sub = myStream.listen((print) {});
   sub.cancel();
 
-  Stream<int> streamInt = Stream.periodic(Duration(seconds: 1), (index) {
+  final streamInt = Stream.periodic(Duration(seconds: 1), (index) {
     return index;
   }).take(10);
 
-  await for (var value in streamInt) {
+  await for (final value in streamInt) {
     print('$value...');
   }
 
@@ -31,14 +29,13 @@ void main() async {
   controler.add('Крагі');
   controler.add('Тягнути');
 
-  var subControler = controler.stream.listen(
-    (onData) {
-      print(onData);
-    },
+  final subControler = controler.stream.listen(
+    print,
     onDone: () {
       print('Стрім завершено');
     },
   );
 
   await controler.close();
+  await subControler.cancel();
 }

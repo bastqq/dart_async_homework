@@ -1,22 +1,24 @@
 void main() async {
   Future<String> fetchName() async {
-    await Future.delayed(Duration(seconds: 2));
+    final myDelay = Future<void>.delayed(Duration(seconds: 2));
+    await myDelay;
     return 'Roman';
   }
 
-  String name = await fetchName();
+  final name = await fetchName();
   print('Мене звати $name');
   print('________________end_task_1_______________');
 
   Future<String> fetchAge(int age) async {
-    await Future.delayed(Duration(milliseconds: 1500));
+    final myDelay = Future<void>.delayed(Duration(milliseconds: 1500));
+    await myDelay;
     return age.toString();
   }
 
-  String ageString = await fetchAge(13);
-  int ageInt = int.parse(ageString);
-  String ageEnding = '';
-  List<int> ageNumbers = ageInt.toString().split('').map(int.parse).toList();
+  final ageString = await fetchAge(13);
+  final ageInt = int.parse(ageString);
+  var ageEnding = '';
+  final ageNumbers = ageInt.toString().split('').map(int.parse).toList();
   final pokuList = [2, 3, 4];
   final notPokuList = [11, 12, 13, 14];
   if (ageNumbers.last == 1 && ageInt != 11) {
@@ -28,7 +30,7 @@ void main() async {
     ageEnding = 'років';
   }
 
-  print("Мені $ageString $ageEnding");
+  print('Мені $ageString $ageEnding');
   print('________________end_task_2_______________');
 
   final stopwatch = Stopwatch();
@@ -47,7 +49,7 @@ void main() async {
 
   stopwatch.reset();
   stopwatch.start();
-  var paralell = await Future.wait([fetchAge(25), fetchName()]);
+  final paralell = await Future.wait([fetchAge(25), fetchName()]);
   stopwatch.stop();
   print(paralell);
   timer = stopwatch.elapsedMilliseconds;
@@ -55,10 +57,12 @@ void main() async {
   print('________________end_task_4_______________');
 
   Future<String> delayedCountdown(int seconds) async {
-    while (seconds > 0) {
-      print('$seconds... ');
-      await Future.delayed(Duration(seconds: 1));
-      seconds = seconds - 1;
+    var sec = seconds;
+    while (sec > 0) {
+      print('$sec... ');
+      final myDelay = Future<void>.delayed(Duration(seconds: 1));
+      await myDelay;
+      sec = sec - 1;
     }
     return 'Старт!';
   }
